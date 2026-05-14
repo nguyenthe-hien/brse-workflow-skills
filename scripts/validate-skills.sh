@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
 # Validate all skill SKILL.md files before packaging or publishing.
 # Checks: YAML parse, description length <= 200, no broken references.
+# Requires only python3 stdlib (no third-party packages).
 #
 # Usage:
 #   ./scripts/validate-skills.sh          # validate all skills
 #   ./scripts/validate-skills.sh <name>   # validate one skill
 
-set -euo pipefail
+set -uo pipefail
 
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 SKILLS_DIR="$REPO_ROOT/plugins/brse-workflow/skills"
@@ -14,12 +15,11 @@ ERRORS=0
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
 NC='\033[0m'
 
 require_python() {
   if ! command -v python3 &>/dev/null; then
-    echo "Error: python3 is required for YAML validation" >&2
+    echo "Error: python3 is required" >&2
     exit 1
   fi
 }
@@ -30,72 +30,85 @@ validate_one() {
   local skill_file="$skill_dir/SKILL.md"
   local skill_errors=0
 
-  if [[ ! -f "$skill_file" ]]; then
-    echo -e "${RED}SKIP${NC}: $name — no SKILL.md"
+  if [[ ! -d "$skill_dir" ]] || [[ ! -f "$skill_file" ]]; then
+    echo -e "${RED}FAIL${NC}: $name — no SKILL.md found"
+    ERRORS=$((ERRORS + 1))
     return
   fi
 
-  # 1. YAML parse + description length
-  python3 - "$skill_file" << 'PYEOF'
-import sys, yaml
+  # 1. Frontmatter parse + description length (stdlib only, no PyYAML)
+  local yaml_out
+  set +e
+  yaml_out=$(python3 - "$skill_file" << 'PYEOF'
+import sys, re
 
 path = sys.argv[1]
 with open(path) as f:
     content = f.read()
 
 if not content.startswith('---'):
-    print(f"  [FAIL] No YAML frontmatter found")
+    print("  [FAIL] No YAML frontmatter found")
     sys.exit(1)
 
 parts = content.split('---', 2)
 if len(parts) < 3:
-    print(f"  [FAIL] Malformed frontmatter (missing closing ---)")
+    print("  [FAIL] Malformed frontmatter (missing closing ---)")
     sys.exit(1)
 
-try:
-    data = yaml.safe_load(parts[1])
-except yaml.YAMLError as e:
-    print(f"  [FAIL] YAML parse error: {e}")
-    sys.exit(1)
-
-if not data:
-    print(f"  [FAIL] Frontmatter parsed as empty")
-    sys.exit(1)
-
+fm = parts[1]
 errors = 0
-if 'name' not in data or not data['name']:
-    print(f"  [FAIL] Missing 'name' field")
+
+# Extract name and description using regex (avoids PyYAML dependency)
+name_match = re.search(r'^name:\s*(.+)$', fm, re.MULTILINE)
+if not name_match or not name_match.group(1).strip():
+    print("  [FAIL] Missing or empty 'name' field")
     errors += 1
 
-desc = data.get('description', '')
-if not desc:
-    print(f"  [FAIL] Missing 'description' field")
-    errors += 1
-elif len(desc) > 200:
-    print(f"  [FAIL] description too long: {len(desc)} chars (max 200)")
+# Description may be quoted or unquoted; colon in value requires quotes
+desc_match = re.search(r'^description:\s*(.+)$', fm, re.MULTILINE)
+if not desc_match:
+    print("  [FAIL] Missing 'description' field")
     errors += 1
 else:
-    print(f"  [OK]   YAML valid, description {len(desc)} chars")
+    raw = desc_match.group(1).strip()
+    # Strip surrounding quotes if present
+    if (raw.startswith('"') and raw.endswith('"')) or \
+       (raw.startswith("'") and raw.endswith("'")):
+        desc = raw[1:-1]
+    else:
+        desc = raw
+        # Unquoted value must not contain a bare colon (YAML parse risk)
+        if re.search(r':\s', desc):
+            print(f"  [FAIL] Unquoted description contains ': ' — quote the value")
+            errors += 1
+
+    if len(desc) > 200:
+        print(f"  [FAIL] description too long: {len(desc)} chars (max 200)")
+        errors += 1
+    elif errors == 0:
+        print(f"  [OK]   frontmatter valid, description {len(desc)} chars")
 
 sys.exit(errors)
 PYEOF
+  )
   local yaml_exit=$?
+  set -e
+
+  echo "$yaml_out"
   if [[ $yaml_exit -ne 0 ]]; then
     skill_errors=$((skill_errors + yaml_exit))
   fi
 
   # 2. Check references exist
-  if [[ -f "$skill_file" ]]; then
-    while IFS= read -r ref; do
-      local ref_path="$skill_dir/$ref"
-      if [[ ! -f "$ref_path" ]]; then
-        echo "  [FAIL] Missing reference: $ref"
-        skill_errors=$((skill_errors + 1))
-      else
-        echo "  [OK]   Reference exists: $ref"
-      fi
-    done < <(grep -oE 'references/[^[:space:]`"'"'"']+\.md' "$skill_file" | sort -u || true)
-  fi
+  while IFS= read -r ref; do
+    local ref_path="$skill_dir/$ref"
+    if [[ ! -f "$ref_path" ]]; then
+      echo "  [FAIL] Missing reference: $ref"
+      skill_errors=$((skill_errors + 1))
+    else
+      echo "  [OK]   Reference exists: $ref"
+    fi
+  done < <(grep -oE 'references/[^[:space:]`"'"'"']+\.md' "$skill_file" | sort -u || true)
 
   if [[ $skill_errors -eq 0 ]]; then
     echo -e "${GREEN}PASS${NC}: $name"
