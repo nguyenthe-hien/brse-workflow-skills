@@ -9,7 +9,7 @@
     {
       "name": "brse-workflow",
       "description": "Skills for Bridge SE workflows: requirements clarification, impact tracing, spec transfer, ticket breakdown, QA scenarios, offshore sync, and Japanese client reporting.",
-      "version": "0.2.0",
+      "version": "0.2.1",
       "source": "./plugins/brse-workflow",
       "category": "Productivity",
       "tags": [
