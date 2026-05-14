@@ -76,6 +76,59 @@
    Final JP wording.
 ```
 
+## Side Branches (invoke any time during main chain)
+
+### Dev question arrives during sprint
+
+```
+Trigger: developer asks about spec ambiguity, edge case, or source behavior conflict.
+
+1. brse-dev-query-response
+   Categorize: answerable / source-trace needed / customer decision / hidden assumption.
+   Output: Vietnamese reply to dev + (if needed) Japanese question to customer.
+
+Resume main chain after dev is unblocked.
+```
+
+### Meeting / daily sync produces output
+
+```
+Trigger: BrSE facilitated or attended a meeting and needs to capture decisions and actions.
+
+1. brse-offshore-sync
+   Input: raw meeting notes or transcript.
+   Output: bilingual decision log + action items with owner and deadline.
+
+This is a standalone output — does not feed back into the main chain unless actions
+create new customer requests (which restart the chain at Stage 0/1).
+```
+
+### Customer or PM pushes unrealistic scope / deadline
+
+```
+Trigger: customer request exceeds technical capacity, timeline, or contradicts a prior decision.
+
+1. brse-feasibility-challenge
+   Input: original customer request + evidence (source trace, estimate, contract clause).
+   Output: restated request + diagnosis + alternative proposal + Japanese pushback reply.
+
+Resume main chain using the accepted alternative as the new scope input.
+```
+
+### Vague or indirect Japanese input (Stage 0)
+
+```
+Trigger: input is very short, hedging ("〜していただけますと幸いです"), or omits key context.
+
+1. brse-intent-reader
+   Input: raw JP message.
+   Output: hypothesis table with confidence levels and recommended clarification questions.
+
+Feed intent-reader output into Stage 1 (brse-requirement-clarifier) as additional context.
+```
+
+---
+
 ## Handoff Note Conventions
 
 Each handoff note is one short block:
