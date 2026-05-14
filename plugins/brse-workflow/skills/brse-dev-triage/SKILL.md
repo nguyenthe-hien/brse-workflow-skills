@@ -1,9 +1,9 @@
 ---
-name: brse-dev-query-response
-description: Help BrSE answer technical questions from offshore developers about spec ambiguities, missing requirements, or source behavior. Produces a bilingual reply (Japanese context to confirm with customer + Vietnamese explanation for the dev), with a clear path: answer directly when known, source-trace when uncertain, or escalate to customer when only the customer can decide.
+name: brse-dev-triage
+description: Triage technical questions from offshore developers — categorize each question as answerable from spec, answerable from source trace, needs customer decision, or reveals a hidden assumption. Produces a bilingual reply: Vietnamese to unblock the dev immediately, Japanese to escalate to the customer when needed. Use when a developer is blocked by spec ambiguity, missing requirement, or source-vs-spec conflict.
 ---
 
-# BrSE Dev Query Response
+# BrSE Dev Triage
 
 Use this skill when a developer asks the BrSE a question that the spec or ticket does not fully answer. The BrSE must decide: answer now, trace source first, or escalate to customer — and reply in a way that does not block the dev unnecessarily.
 

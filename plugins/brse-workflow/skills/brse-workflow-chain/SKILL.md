@@ -29,7 +29,7 @@ Stage 7 — Report customer→  brse-client-report
 **Side branches** (invoke when condition is met, outside the main chain):
 
 ```
-Dev question arrives         →  brse-dev-query-response
+Dev question arrives         →  brse-dev-triage
 Meeting / daily sync output  →  brse-offshore-sync
 PM / customer pushes scope   →  brse-feasibility-challenge
 ```

@@ -83,7 +83,7 @@
 ```
 Trigger: developer asks about spec ambiguity, edge case, or source behavior conflict.
 
-1. brse-dev-query-response
+1. brse-dev-triage
    Categorize: answerable / source-trace needed / customer decision / hidden assumption.
    Output: Vietnamese reply to dev + (if needed) Japanese question to customer.
 
