@@ -1,6 +1,6 @@
 ---
 name: brse-feasibility-challenge
-description: Evaluate a customer or PM request for technical, scope, or timeline feasibility, then draft a structured response that challenges the infeasible parts and proposes a superior alternative — in customer-appropriate Japanese with evidence-backed reasoning. Use when a BrSE must push back on an unrealistic ask without damaging the relationship.
+description: Evaluate a customer or PM request for technical, scope, or timeline feasibility, then draft a structured Japanese response that challenges infeasible parts and proposes a superior alternative.
 ---
 
 # BrSE Feasibility Challenge

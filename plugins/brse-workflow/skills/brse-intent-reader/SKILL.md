@@ -1,6 +1,6 @@
 ---
 name: brse-intent-reader
-description: Analyze Japanese stakeholder messages, meeting notes, or spec changes to surface implicit expectations, unstated constraints, and cultural subtext that are not written explicitly. Converts inferred intent into explicit assumptions, open questions, or scope additions that the dev team can act on safely. Use when the BrSE suspects the customer means more than what is literally written.
+description: Surface implicit expectations and unstated constraints in Japanese stakeholder messages. Converts inferred intent into explicit assumptions and open questions for the dev team.
 ---
 
 # BrSE Intent Reader
@@ -89,6 +89,6 @@ Use this skill when the Japanese customer input is literally short but likely ca
 **Assumptions to apply (if customer doesn't reply quickly):**
 - Default target screen = the one shown at the demo on [date].
 - Default scope = visual readability (font, contrast), not layout restructure.
-- Default timeline = next sprint, communicated with the clarification.
+- Default timeline: **do not apply as default** — timeline affects scope/cost; propose it in the clarification message and wait for confirmation before committing.
 
 For signal patterns and Japanese cultural subtext, read `references/signals.md`.

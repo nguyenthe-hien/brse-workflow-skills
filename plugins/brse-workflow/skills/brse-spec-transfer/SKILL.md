@@ -1,6 +1,6 @@
 ---
 name: brse-spec-transfer
-description: Transfer, translate, or rewrite specs between Japanese customer documents and development task surfaces while preserving structure, links, task IDs, tables, headings, screenshots, and established product terms. Use for BrSE document transfer between Google Docs, Outline, Plane, Backlog, GitHub issues, or Markdown.
+description: Transfer or translate specs between Japanese customer docs and dev task surfaces (Google Docs, Outline, Plane, Backlog, GitHub) while preserving structure, task IDs, tables, and product terms.
 ---
 
 # BrSE Spec Transfer

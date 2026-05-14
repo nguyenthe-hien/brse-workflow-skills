@@ -1,6 +1,6 @@
 ---
 name: brse-ticket-breakdown
-description: Break a BrSE requirement into implementation tickets, subtasks, dependencies, estimates, and ownership boundaries for offshore development. Use when turning customer requests or specs into Plane, Backlog, Jira, GitHub, or sprint planning tasks.
+description: Break a BrSE requirement into implementation tickets, subtasks, dependencies, estimates, and ownership for offshore development in Plane, Backlog, Jira, or GitHub.
 ---
 
 # BrSE Ticket Breakdown

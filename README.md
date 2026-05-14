@@ -139,7 +139,7 @@ codex plugin install brse-workflow
 - `brse-report-reviewer` — verify dev reports against 6-criteria check before forwarding
 - `brse-structured-thinking` — MECE, Pyramid, Logic Tree, 5W1H, So-What/Why-So
 - `brse-workflow-chain` — orchestrate full chain from raw request to delivery
-- `brse-dev-query-response` — categorize dev questions and answer / trace / escalate
+- `brse-dev-triage` — categorize dev questions and answer / trace / escalate
 
 ### Tier 3 — Strategic Bridge
 

@@ -1,6 +1,6 @@
 ---
 name: brse-offshore-sync
-description: Prepare bilingual BrSE meeting agendas, minutes, decision logs, action items, and offshore sync notes between Japanese stakeholders and development teams. Use for standups, customer meetings, Q&A整理, design sync, release sync, and handoff notes.
+description: Prepare bilingual BrSE meeting agendas, minutes, decision logs, and action items for standups, customer meetings, design sync, or handoff notes.
 ---
 
 # BrSE Offshore Sync
