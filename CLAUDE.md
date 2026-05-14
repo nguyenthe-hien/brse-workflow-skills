@@ -4,7 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What This Repo Is
 
-A **cross-platform** plugin marketplace containing one plugin: `brse-workflow`. The plugin ships only skills (no hooks, MCP servers, or pre-approved tool permissions). Skills are designed for Vietnamese Bridge SE (BrSE) work bridging Japanese stakeholders and offshore development teams.
+A **cross-platform** Claude Code plugin packaging 13 skills under one plugin name: `brse-workflow`. The plugin ships only skills (no hooks, MCP servers, or pre-approved tool permissions). Skills are designed for Vietnamese Bridge SE (BrSE) work bridging Japanese stakeholders and offshore development teams.
+
+> The repo uses Claude Code's plugin-distribution format (a `marketplace.json` catalog file plus a `plugin.json` manifest). That's the technical naming Anthropic chose for the install mechanism — the repo itself is just a skills collection, not a commercial marketplace.
 
 Skills follow the [agentskills.io](https://agentskills.io) standard so the **same `SKILL.md` files** load in both **Claude Code** and **OpenAI Codex CLI**. Only the plugin manifest folder differs per host.
 
@@ -13,14 +15,14 @@ Skills follow the [agentskills.io](https://agentskills.io) standard so the **sam
 Register the marketplace and install the plugin from inside Claude Code:
 
 ```text
-/plugin marketplace add /Users/hien.nguyen/claude-brse-workflow-marketplace
-/plugin install brse-workflow@hien-brse-marketplace
+/plugin marketplace add /Users/hien.nguyen/brse-workflow-skills
+/plugin install brse-workflow@brse-workflow-skills
 ```
 
 During development, bypass installation and load directly:
 
 ```bash
-claude --plugin-dir /Users/hien.nguyen/claude-brse-workflow-marketplace/plugins/brse-workflow
+claude --plugin-dir /Users/hien.nguyen/brse-workflow-skills/plugins/brse-workflow
 ```
 
 After editing skill files, reload without restarting:

@@ -1,6 +1,6 @@
-# BrSE Workflow Marketplace
+# BrSE Workflow Skills
 
-A cross-platform plugin marketplace containing the `brse-workflow` plugin — 13 skills for Bridge SE work between Japanese stakeholders and offshore development teams.
+A cross-platform collection of 13 skills for Bridge SE work between Japanese stakeholders and offshore development teams — distributed as a single Claude Code plugin (`brse-workflow`) but also installable on Claude Desktop, Cowork web, and Codex CLI.
 
 Works with **all four official Claude surfaces** plus **OpenAI Codex CLI**, because skill files (`SKILL.md`) follow the shared [agentskills.io](https://agentskills.io) standard.
 
@@ -24,20 +24,20 @@ Works with **all four official Claude surfaces** plus **OpenAI Codex CLI**, beca
 
 ```text
 /plugin marketplace add <github-owner>/<repo-name>
-/plugin install brse-workflow@hien-brse-marketplace
+/plugin install brse-workflow@brse-workflow-skills
 ```
 
 **Option B — From a local clone:**
 
 ```text
-/plugin marketplace add /path/to/claude-brse-workflow-marketplace
-/plugin install brse-workflow@hien-brse-marketplace
+/plugin marketplace add /path/to/brse-workflow-skills
+/plugin install brse-workflow@brse-workflow-skills
 ```
 
 **Option C — Dev mode (no install):**
 
 ```bash
-claude --plugin-dir /path/to/claude-brse-workflow-marketplace/plugins/brse-workflow
+claude --plugin-dir /path/to/brse-workflow-skills/plugins/brse-workflow
 ```
 
 After editing skill files, run `/reload-plugins`.
@@ -60,7 +60,7 @@ Restart Claude Desktop. Skills auto-load — Claude matches them by their `descr
 
 ```bash
 mkdir -p ~/.claude/skills
-cp -r /path/to/claude-brse-workflow-marketplace/plugins/brse-workflow/skills/* ~/.claude/skills/
+cp -r /path/to/brse-workflow-skills/plugins/brse-workflow/skills/* ~/.claude/skills/
 ```
 
 **Windows path:** `%USERPROFILE%\.claude\skills\`
@@ -110,7 +110,7 @@ Restart Codex. Skills are auto-detected by `name`/`description` in each `SKILL.m
 
 ```bash
 mkdir -p <your-project>/.agents/skills
-cp -r /path/to/claude-brse-workflow-marketplace/plugins/brse-workflow/skills/* <your-project>/.agents/skills/
+cp -r /path/to/brse-workflow-skills/plugins/brse-workflow/skills/* <your-project>/.agents/skills/
 ```
 
 **Option C — Codex plugin marketplace** *(when this repo is published as a Codex marketplace)*:
@@ -124,18 +124,18 @@ codex plugin install brse-workflow
 
 ## Publishing & Distribution
 
-This marketplace is published as a **public** GitHub repository so anyone can install it. Skills are sanitized to be project-agnostic — they reference generic terms like `UserProfile` and `existing system` rather than specific product names.
+This collection is published as a **public** GitHub repository so anyone can install it. Skills are sanitized to be project-agnostic — they reference generic terms like `UserProfile` and `existing system` rather than specific product names.
 
 ### Maintainer setup (one-time)
 
 ```bash
 # 1. Init git and commit
-cd /path/to/claude-brse-workflow-marketplace
+cd /path/to/brse-workflow-skills
 git init && git add -A
-git commit -m "Initial BrSE workflow marketplace v0.2.0"
+git commit -m "Initial BrSE workflow skills v0.2.0"
 
 # 2. Create PUBLIC repo on your GitHub account
-gh repo create nguyenthe-hien/brse-workflow-marketplace \
+gh repo create nguyenthe-hien/brse-workflow-skills \
   --public \
   --source=. \
   --remote=origin \
@@ -175,12 +175,12 @@ Members run this one-shot installer (works for **public or private** source):
 
 ```bash
 # Public install:
-gh repo clone nguyenthe-hien/brse-workflow-marketplace /tmp/brse-installer
-/tmp/brse-installer/scripts/install-for-team-member.sh nguyenthe-hien/brse-workflow-marketplace
+gh repo clone nguyenthe-hien/brse-workflow-skills /tmp/brse-installer
+/tmp/brse-installer/scripts/install-for-team-member.sh nguyenthe-hien/brse-workflow-skills
 
 # Or use Claude Code marketplace:
-# /plugin marketplace add nguyenthe-hien/brse-workflow-marketplace
-# /plugin install brse-workflow@hien-brse-marketplace
+# /plugin marketplace add nguyenthe-hien/brse-workflow-skills
+# /plugin install brse-workflow@brse-workflow-skills
 ```
 
 The script installs skills into both `~/.claude/skills/` (Code + Desktop) and `~/.agents/skills/` (Codex) via symlinks. Re-run to pull updates.
