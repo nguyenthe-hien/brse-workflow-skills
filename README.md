@@ -148,43 +148,6 @@ codex plugin install brse-workflow
 
 ---
 
-## Invocation
-
-**Claude Code:**
-
-```text
-/brse-workflow:brse-requirement-clarifier
-```
-
-Or let Claude auto-trigger by matching the skill's `description` against your prompt.
-
-**Claude Desktop / Cowork (web):**
-
-Skills auto-trigger by description match — just describe your task naturally (e.g. *"Help me clarify this Japanese spec"* will pull `brse-requirement-clarifier`). Type `/` in Cowork to list available skills.
-
-**Codex CLI:**
-
-Skills are auto-loaded by Codex when prompt context matches the skill `description`. No slash command needed; you can also reference a skill by name in your prompt.
-
----
-
-## Repository Layout
-
-```
-.claude-plugin/marketplace.json              # Claude Code marketplace catalog
-plugins/brse-workflow/
-  .claude-plugin/plugin.json                 # Claude Code plugin manifest
-  .codex-plugin/plugin.json                  # Codex plugin manifest
-  skills/<skill-name>/SKILL.md               # Skill definition (used by all surfaces)
-  skills/<skill-name>/references/*.md        # Deeper guidance loaded on demand
-scripts/pack-skills.sh                       # Generate per-skill ZIPs for Cowork upload
-dist/zips/                                   # Output of pack-skills.sh (gitignored)
-```
-
-The `SKILL.md` files are **identical across Claude Code, Desktop, Cowork web, API, and Codex** — only the plugin manifest folders and the delivery format (folder vs. ZIP) differ per surface.
-
----
-
 ## License
 
 MIT
