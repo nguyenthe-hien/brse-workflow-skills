@@ -23,11 +23,11 @@ Use this skill when relaying the customer request as-is would set the project up
    - **Timeline** — deadline shorter than minimum viable path
    - **Risk** — feasible but unsafe (security, data, compliance)
    - **Conflict** — contradicts a prior decision or contract clause
-2. Gather evidence for the infeasibility claim — source trace, prior incident, benchmark, contract clause. Without evidence, do not challenge.
-3. Design at least one **alternative proposal** that delivers the customer's underlying goal (not the literal request).
-4. Apply Pyramid structure to the customer reply: conclusion → reasoning → evidence → proposal.
-5. Use respectful Japanese that names the constraint clearly without blaming the customer.
-6. Always include a **fallback if customer insists** — what BrSE will do if the customer overrides the challenge.
+3. Gather evidence for the infeasibility claim — source trace, prior incident, benchmark, contract clause. Without evidence, do not challenge.
+4. Design at least one **alternative proposal** that delivers the customer's underlying goal (not the literal request).
+5. Apply Pyramid structure to the customer reply: conclusion → reasoning → evidence → proposal.
+6. Use respectful Japanese that names the constraint clearly without blaming the customer.
+7. Always include a **fallback if customer insists** — what BrSE will do if the customer overrides the challenge.
 
 ## Output Shape
 

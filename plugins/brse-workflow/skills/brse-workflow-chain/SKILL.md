@@ -16,6 +16,7 @@ Use this skill as a meta-orchestrator. It does not replace the domain skills —
 ## Chain Stages
 
 ```
+Stage 0 — Read intent    →  brse-intent-reader         (conditional: vague/short JP input)
 Stage 1 — Clarify        →  brse-requirement-clarifier
 Stage 2 — Trace impact   →  brse-impact-trace
 Stage 3 — Structure      →  brse-structured-thinking  (optional, when output is messy)
@@ -25,23 +26,33 @@ Stage 6 — Verify report  →  brse-report-reviewer       (when dev reports bac
 Stage 7 — Report customer→  brse-client-report
 ```
 
+**Side branches** (invoke when condition is met, outside the main chain):
+
+```
+Dev question arrives         →  brse-dev-query-response
+Meeting / daily sync output  →  brse-offshore-sync
+PM / customer pushes scope   →  brse-feasibility-challenge
+```
+
 Not every chain runs all stages. The skill decides the minimum useful path.
 
 ## Workflow
 
-1. Read the customer input and classify it:
+1. Check if Stage 0 is needed: if the customer input is vague, very short, or contains indirect Japanese phrasing (hedging, omissions, polite indirection) — invoke `brse-intent-reader` first to surface unstated expectations before clarifying.
+2. Read the customer input and classify it:
    - **New feature request** → Stages 1, 2, 4, 5, 7
    - **Bug investigation request** → Stages 1, 2, 6, 7
    - **Spec change** → Stages 1, 2, 4, 7
    - **Status reply** → Stage 6, 7
-2. Confirm classification with the BrSE before chaining (one short question).
-3. For each stage, state:
+3. Confirm classification with the BrSE before chaining (one short question).
+4. For each stage, state:
    - Which skill to invoke
    - What input the skill needs from the previous stage
    - What output it must produce to feed the next stage
-4. Run stages one at a time. Do not skip ahead even if the next answer feels obvious.
-5. At each stage handoff, write a short bridge note: "From Stage X we have A, B, C — Stage Y needs A as input."
-6. If a stage uncovers a blocker (missing customer info, missing source access), stop the chain and surface the blocker; do not fabricate input for the next stage.
+5. Run stages one at a time. Do not skip ahead even if the next answer feels obvious.
+6. At each stage handoff, write a short bridge note: "From Stage X we have A, B, C — Stage Y needs A as input."
+7. If a side-branch condition is met during the chain (dev question, meeting output, scope pushback), pause the main chain, handle the side branch, then resume.
+8. If a stage uncovers a blocker (missing customer info, missing source access), stop the chain and surface the blocker; do not fabricate input for the next stage.
 
 ## Output Shape
 
