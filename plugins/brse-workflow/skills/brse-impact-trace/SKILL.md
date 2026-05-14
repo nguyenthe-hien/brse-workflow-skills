@@ -1,6 +1,6 @@
 ---
 name: brse-impact-trace
-description: Trace existing source code and contracts before answering impact, feasibility, or implementation questions. Use when BrSE work requires evidence across frontend, backend, API/proto/schema, database, batch jobs, permissions, or config before reporting to Japanese stakeholders or assigning offshore work.
+description: Trace source code and contracts before answering impact or feasibility questions. Use when BrSE needs evidence across frontend, backend, API, DB, or config before reporting to stakeholders.
 ---
 
 # BrSE Impact Trace

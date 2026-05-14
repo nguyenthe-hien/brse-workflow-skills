@@ -1,6 +1,6 @@
 ---
 name: brse-report-reviewer
-description: Verify a dev progress report, investigation result, or bug analysis against completeness criteria before BrSE forwards it to Japanese stakeholders. Use when a developer or offshore team submits a report and the BrSE needs to check it has a clear claim, sufficient evidence, defined scope, residual risk, and concrete next actions — and is safe to send to the customer.
+description: Verify dev reports before BrSE forwards them to Japanese stakeholders. Checks for clear claim, evidence, defined scope, residual risk, and concrete next actions.
 ---
 
 # BrSE Report Reviewer

@@ -1,6 +1,6 @@
 ---
 name: brse-requirement-clarifier
-description: Clarify Japanese or bilingual business requirements into dev-ready scope, assumptions, open questions, acceptance criteria, and risk notes. Use when a BrSE receives vague customer specs, Backlog/Plane tickets, meeting notes, or Japanese stakeholder requests that need to be made clear before development.
+description: Clarify Japanese or bilingual requirements into dev-ready scope, assumptions, open questions, and risk notes. Use when a BrSE receives vague specs or stakeholder requests before development.
 ---
 
 # BrSE Requirement Clarifier

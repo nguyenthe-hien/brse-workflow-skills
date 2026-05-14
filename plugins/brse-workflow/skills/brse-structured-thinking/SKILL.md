@@ -1,6 +1,6 @@
 ---
 name: brse-structured-thinking
-description: Apply MECE, Pyramid Principle, issue trees, and 5W1H to structure BrSE outputs — impact reports, scope definitions, customer answers, and problem decomposition. Use when a BrSE deliverable risks gaps, overlaps, unsupported conclusions, or buried key messages, or when an ambiguous problem must be broken into branches before action.
+description: Apply MECE, Pyramid Principle, issue trees, and 5W1H to structure BrSE outputs. Use when a deliverable risks gaps or buried key messages, or when a problem needs decomposition before action.
 ---
 
 # BrSE Structured Thinking

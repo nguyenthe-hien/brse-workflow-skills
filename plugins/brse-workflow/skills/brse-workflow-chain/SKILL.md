@@ -1,6 +1,6 @@
 ---
 name: brse-workflow-chain
-description: Guide a BrSE through the full chain from raw customer request to ready-to-assign tickets and customer report — orchestrating clarifier, impact-trace, ticket-breakdown, qa-scenario, and client-report in sequence with explicit handoff context. Use when a BrSE has a new customer request and wants end-to-end guidance instead of invoking each skill manually.
+description: Orchestrate the full BrSE chain — clarifier, impact-trace, ticket-breakdown, qa-scenario, client-report — with handoff context. Use when a BrSE wants end-to-end guidance.
 ---
 
 # BrSE Workflow Chain

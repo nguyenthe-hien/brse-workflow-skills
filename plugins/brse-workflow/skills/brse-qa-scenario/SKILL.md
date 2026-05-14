@@ -1,6 +1,6 @@
 ---
 name: brse-qa-scenario
-description: Create or review QA scenarios from BrSE specs, current behavior, source impact, and customer acceptance criteria. Use when preparing Japanese QA sheets, regression checklists, demo cases, or release verification plans.
+description: Create or review QA scenarios from BrSE specs and acceptance criteria. Use when preparing Japanese QA sheets, regression checklists, demo cases, or release verification plans.
 ---
 
 # BrSE QA Scenario

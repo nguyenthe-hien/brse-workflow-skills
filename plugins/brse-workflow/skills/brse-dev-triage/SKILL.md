@@ -1,6 +1,6 @@
 ---
 name: brse-dev-triage
-description: Triage technical questions from offshore developers — categorize each question as answerable from spec, answerable from source trace, needs customer decision, or reveals a hidden assumption. Produces a bilingual reply: Vietnamese to unblock the dev immediately, Japanese to escalate to the customer when needed. Use when a developer is blocked by spec ambiguity, missing requirement, or source-vs-spec conflict.
+description: "Triage dev questions: answerable/source-trace/customer-decision/hidden-assumption. Bilingual reply — Vietnamese to unblock dev, Japanese to escalate. Use when dev is blocked by spec ambiguity."
 ---
 
 # BrSE Dev Triage
