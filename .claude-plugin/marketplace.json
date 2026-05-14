@@ -1,0 +1,24 @@
+{
+  "name": "hien-brse-marketplace",
+  "description": "Local Claude Code marketplace for BrSE workflow skills.",
+  "version": "1.1.0",
+  "owner": {
+    "name": "Hien Nguyen"
+  },
+  "plugins": [
+    {
+      "name": "brse-workflow",
+      "description": "Skills for Bridge SE workflows: requirements clarification, impact tracing, spec transfer, ticket breakdown, QA scenarios, offshore sync, and Japanese client reporting.",
+      "version": "0.2.0",
+      "source": "./plugins/brse-workflow",
+      "category": "Productivity",
+      "tags": [
+        "brse",
+        "offshore",
+        "requirements",
+        "japanese",
+        "qa"
+      ]
+    }
+  ]
+}

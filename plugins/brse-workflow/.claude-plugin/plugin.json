@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "brse-workflow",
+  "version": "0.2.0",
+  "description": "Claude Code skills for Bridge SE workflows between Japanese stakeholders and offshore development teams.",
+  "author": {
+    "name": "Hien Nguyen"
+  },
+  "license": "MIT",
+  "keywords": [
+    "brse",
+    "bridge-se",
+    "offshore",
+    "requirements",
+    "japanese",
+    "qa"
+  ],
+  "skills": "./skills/"
+}
