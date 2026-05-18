@@ -4,7 +4,7 @@ This file provides guidance to Codex (Codex.ai/code) when working with code in t
 
 ## What This Repo Is
 
-A **cross-platform** Codex plugin packaging 13 skills under one plugin name: `brse-workflow`. The plugin ships only skills (no hooks, MCP servers, or pre-approved tool permissions). Skills are designed for Vietnamese Bridge SE (BrSE) work bridging Japanese stakeholders and offshore development teams.
+A **cross-platform** Codex plugin packaging 14 skills under one plugin name: `brse-workflow`. The plugin ships only skills (no hooks, MCP servers, or pre-approved tool permissions). Skills are designed for Vietnamese Bridge SE (BrSE) work bridging Japanese stakeholders and offshore development teams.
 
 > The repo uses Codex's plugin-distribution format (a `marketplace.json` catalog file plus a `plugin.json` manifest). That's the technical naming Anthropic chose for the install mechanism — the repo itself is just a skills collection, not a commercial marketplace.
 
@@ -55,6 +55,7 @@ Skills are organized by BrSE competency tier (communication → analytical → s
 | Skill | Purpose |
 |---|---|
 | `brse-requirement-clarifier` | Convert vague Japanese/bilingual specs into dev-ready requirements |
+| `brse-spec-verify` | Verify a requirement document against ISO/IEC/IEEE 29148 9-criteria before handing to dev or transferring |
 | `brse-impact-trace` | Trace source code before answering impact or feasibility questions |
 | `brse-spec-transfer` | Move/translate specs between Google Docs, Outline, Plane, Backlog, Markdown |
 | `brse-ticket-breakdown` | Break requirements into Plane/Backlog tickets with acceptance criteria |
@@ -66,10 +67,10 @@ Skills are organized by BrSE competency tier (communication → analytical → s
 
 | Skill | Purpose |
 |---|---|
-| `brse-report-reviewer` | Verify dev reports against 6-criteria check before forwarding to customer |
+| `brse-report-reviewer` | Verify dev reports with substance and clarity checks before forwarding to customer |
 | `brse-structured-thinking` | Apply MECE, Pyramid, Logic Tree, 5W1H, So-What/Why-So |
-| `brse-workflow-chain` | Orchestrate clarifier → impact-trace → breakdown → QA → report as one chain |
-| `brse-dev-query-response` | Categorize dev questions and decide: answer / trace / escalate to customer |
+| `brse-workflow-chain` | Orchestrate clarifier → spec-verify → impact-trace → breakdown → QA → report as one chain |
+| `brse-dev-triage` | Categorize dev questions and decide: answer / trace / escalate to customer |
 
 **Tier 3 — Strategic Bridge**
 

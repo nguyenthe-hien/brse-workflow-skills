@@ -7,6 +7,13 @@ description: Clarify Japanese or bilingual requirements into dev-ready scope, as
 
 Use this skill to convert ambiguous customer input into an implementation-ready requirement without inventing facts.
 
+## When To Use
+
+- Customer just sent a Japanese or bilingual request that mixes goal, constraint, and example without clear scope.
+- A spec inherited from another BrSE has gaps before it can be forwarded to dev.
+- Stakeholder message contains assumptions that the offshore team will read differently.
+- Before invoking `brse-spec-verify`, `brse-impact-trace`, or `brse-ticket-breakdown` — they all expect a structured requirement as input.
+
 ## Workflow
 
 1. Identify the source language and intended audience: customer, PM, developer, QA, or mixed.
@@ -27,6 +34,10 @@ Use this skill to convert ambiguous customer input into an implementation-ready 
 Use this default structure unless the user asks for another format:
 
 ```markdown
+## Source
+
+(original customer input reference: task ID, ticket URL, chat thread, email subject + date, or attached file path. Required for downstream spec-verify Traceable + Correct checks.)
+
 ## Requirement Summary
 
 ## Scope

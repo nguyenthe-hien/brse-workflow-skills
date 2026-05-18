@@ -1,15 +1,15 @@
 {
   "name": "brse-workflow-skills",
   "description": "BrSE workflow skills for Japanese-offshore software delivery.",
-  "version": "1.1.0",
+  "version": "1.2.2",
   "owner": {
     "name": "Hien Nguyen"
   },
   "plugins": [
     {
       "name": "brse-workflow",
-      "description": "Skills for Bridge SE workflows: requirements clarification, impact tracing, spec transfer, ticket breakdown, QA scenarios, offshore sync, and Japanese client reporting.",
-      "version": "0.2.1",
+      "description": "Skills for Bridge SE workflows: requirements clarification and verification (ISO/IEC/IEEE 29148), impact tracing, spec transfer, ticket breakdown, QA scenarios, offshore sync, and Japanese client reporting.",
+      "version": "0.3.2",
       "source": "./plugins/brse-workflow",
       "category": "Productivity",
       "tags": [
