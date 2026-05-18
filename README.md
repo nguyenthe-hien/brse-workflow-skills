@@ -1,6 +1,6 @@
 # BrSE Workflow Skills
 
-A cross-platform collection of 13 skills for Bridge SE work between Japanese stakeholders and offshore development teams — distributed as a single Claude Code plugin (`brse-workflow`) but also installable on Claude Desktop, Cowork web, and Codex CLI.
+A cross-platform collection of 14 skills for Bridge SE work between Japanese stakeholders and offshore development teams — distributed as a single Claude Code plugin (`brse-workflow`) but also installable on Claude Desktop, Cowork web, and Codex CLI.
 
 Works with **all four official Claude surfaces** plus **OpenAI Codex CLI**, because skill files (`SKILL.md`) follow the shared [agentskills.io](https://agentskills.io) standard.
 
@@ -74,7 +74,7 @@ Cowork **only supports per-skill ZIP uploads** via the UI — no GitHub install,
 **Step 1 — Generate the ZIPs:**
 
 ```bash
-./scripts/pack-skills.sh           # pack all 13 skills
+./scripts/pack-skills.sh           # pack all 14 skills
 ./scripts/pack-skills.sh brse-report-reviewer   # or pack one
 ```
 
@@ -127,6 +127,7 @@ codex plugin install brse-workflow
 ### Tier 1 — Communication Bridge
 
 - `brse-requirement-clarifier` — clarify vague Japanese specs into dev-ready requirements
+- `brse-spec-verify` — verify requirement documents against ISO/IEC/IEEE 29148 before transfer or handoff
 - `brse-impact-trace` — trace source code before answering impact questions
 - `brse-spec-transfer` — move specs between Google Docs, Outline, Plane, Backlog, Markdown
 - `brse-ticket-breakdown` — break requirements into Plane/Backlog tickets
@@ -136,7 +137,7 @@ codex plugin install brse-workflow
 
 ### Tier 2 — Analytical Bridge
 
-- `brse-report-reviewer` — verify dev reports against 6-criteria check before forwarding
+- `brse-report-reviewer` — verify dev reports with substance and clarity checks before forwarding
 - `brse-structured-thinking` — MECE, Pyramid, Logic Tree, 5W1H, So-What/Why-So
 - `brse-workflow-chain` — orchestrate full chain from raw request to delivery
 - `brse-dev-triage` — categorize dev questions and answer / trace / escalate

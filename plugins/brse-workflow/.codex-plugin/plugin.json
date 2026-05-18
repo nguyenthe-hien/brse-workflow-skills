@@ -1,6 +1,6 @@
 {
   "name": "brse-workflow",
-  "version": "0.2.1",
-  "description": "Skills for Bridge SE workflows between Japanese stakeholders and offshore development teams. Covers requirement clarification, source impact tracing, ticket breakdown, QA scenarios, Japanese client reporting, structured thinking (MECE/Pyramid), report verification, intent reading, and feasibility challenge.",
+  "version": "0.3.2",
+  "description": "Skills for Bridge SE workflows between Japanese stakeholders and offshore development teams. Covers requirement clarification, requirement document verification (ISO/IEC/IEEE 29148), source impact tracing, ticket breakdown, QA scenarios, Japanese client reporting, structured thinking (MECE/Pyramid), report verification, intent reading, and feasibility challenge.",
   "skills": "./skills/"
 }
