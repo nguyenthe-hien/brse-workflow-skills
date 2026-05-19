@@ -1,11 +1,11 @@
 ---
 name: brse-report-reviewer
-description: Verify engineer reports (including AI engineers on multi-environment work) before BrSE forwards to Japanese stakeholders. Combines 6-criteria substance check with 5-question clarity check (具体↔抽象).
+description: Review the substance of developer reports before BrSE forwards them. Use for daily/weekly, investigation, impact, and QA reports needing evidence, scope, risk, and next-action checks.
 ---
 
 # BrSE Report Reviewer
 
-Use this skill when reviewing reports authored by developers, AI engineers, QA, or offshore team members before they are forwarded to a Japanese customer or PM. The goal is to catch weak conclusions, missing evidence, scope gaps, vague next steps, and unclear writing so the BrSE never relays unreliable or hard-to-read information.
+Use this skill for substance review of reports authored by developers, AI engineers, QA, or offshore team members before they are forwarded to a Japanese customer or PM. The goal is to catch weak conclusions, missing evidence, scope gaps, vague next steps, and unclear writing so the BrSE never relays unreliable or hard-to-read information.
 
 ## When To Use
 
