@@ -1,11 +1,24 @@
 ---
 name: brse-spec-transfer
-description: Transfer or translate specs between Japanese customer docs and dev task surfaces (Google Docs, Outline, Plane, Backlog, GitHub) while preserving structure, task IDs, tables, and product terms.
+description: Use when a BrSE needs to move spec content from a customer Japanese document into a dev delivery surface (Outline, Plane, Backlog, GitHub) or the other direction, and the structure, task IDs, tables, and product terms must survive the move intact.
 ---
 
 # BrSE Spec Transfer
 
 Use this skill when moving or rewriting specification content between planning and delivery surfaces.
+
+## When To Use
+
+- Moving a customer Japanese document into a dev surface (Outline, Plane, Backlog, GitHub).
+- Converting a Markdown spec into a Plane/Backlog ticket while preserving headings, tables, task IDs.
+- Producing a JP demo/customer document from an internal English/Vietnamese working draft.
+
+## When NOT To Use
+
+- The spec has not been verified — run `brse-spec-verify` first.
+- The transfer needs new ticket breakdown — use `brse-ticket-breakdown` (transfer preserves structure, breakdown changes it).
+- The translation requires inferring intent — invoke `brse-intent-reader` before transfer to surface implicit content.
+- Source contains content that should not be visible to the target audience — escalate, do not auto-filter.
 
 ## Workflow
 
@@ -49,5 +62,19 @@ When transferring a demo/customer document, keep the source headings and table l
 - Do not convert customer-facing docs into internal testcase notation.
 - Do not duplicate the same point in multiple sections.
 - If the target document has images, treat them as required content, not decoration.
+
+## Tooling
+
+For scaffolding a target document, the skill ships a skeleton generator:
+
+```bash
+# Emit a clean ticket skeleton
+node scripts/markdown-skeleton.mjs --to ticket
+
+# Emit a demo/customer skeleton that preserves source headings and tables
+node scripts/markdown-skeleton.mjs --to demo --source path/to/source.md
+```
+
+The script extracts headings and tables from the source and re-emits them in the target order — structure only. It does not translate content; translation remains a human/Claude decision per the Rules above.
 
 For Japanese wording and document-surface rules, read `references/style.md`.

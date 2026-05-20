@@ -1,6 +1,6 @@
 ---
 name: brse-structured-thinking
-description: Apply MECE, Pyramid Principle, issue trees, and 5W1H to structure BrSE outputs. Use when a deliverable risks gaps or buried key messages, or when a problem needs decomposition before action.
+description: Use when a BrSE deliverable has its conclusion buried, scope that feels incomplete with no clear gap, a customer question too broad to answer, ticket breakdown that overlaps or leaves silent holes, or a vague problem statement like "なんとなくおかしい" that needs decomposition before action.
 ---
 
 # BrSE Structured Thinking
@@ -14,6 +14,13 @@ Use this skill to add logical structure to BrSE deliverables. It does not replac
 - A customer question is broad and needs to be broken into answerable pieces.
 - Ticket breakdown overlaps or leaves silent gaps.
 - A problem statement is vague: "なんとなくおかしい" or "うまくいかない".
+
+## When NOT To Use
+
+- The deliverable is already clearly structured — adding a framework is decoration.
+- The skill that produced the output already enforces structure — use that skill's gate, not a second pass here.
+- Time is too short and a rough structure already exists — ship and refine after.
+- The problem is missing facts, not structure — gather facts first; framework on top of unknowns produces a confident-looking guess.
 
 ## Frameworks
 

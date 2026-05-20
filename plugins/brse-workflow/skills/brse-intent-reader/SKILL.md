@@ -1,6 +1,6 @@
 ---
 name: brse-intent-reader
-description: Surface implicit expectations and unstated constraints in Japanese stakeholder messages. Converts inferred intent into explicit assumptions and open questions for the dev team.
+description: Use when a Japanese stakeholder message is unusually short, uses polite hedging around something operationally important, omits scope that is normally specified, or references past behavior without detail — situations where 行間を読む is required before clarifying.
 ---
 
 # BrSE Intent Reader
@@ -14,6 +14,13 @@ Use this skill when the Japanese customer input is literally short but likely ca
 - A spec change request that doesn't mention obvious side effects.
 - "前回と同様で" / "いつもの通りで" without specifying what "usual" means.
 - Customer asks a question that implies a complaint.
+
+## When NOT To Use
+
+- Customer message is already explicit and complete — running this skill adds inference where none is needed.
+- The reading-between-lines would produce scope/cost change — those must be confirmed by the customer, not assumed.
+- Input is from a developer, not a Japanese stakeholder — culture and politeness signals do not transfer.
+- Customer has stated their request directly and you would be inventing additional demands — stop and run `brse-requirement-clarifier` on the literal request.
 
 ## Workflow
 

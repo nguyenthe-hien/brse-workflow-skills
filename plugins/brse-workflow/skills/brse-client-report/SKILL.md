@@ -1,11 +1,28 @@
 ---
 name: brse-client-report
-description: Draft or review Japanese client-facing BrSE reports for progress, investigations, risk notes, and customer answers. Use when reporting to Japanese stakeholders.
+description: Use when a BrSE must produce or polish a Japanese customer-facing report and the wording, tone, conclusion-first structure, and business style must be ready for a Japanese stakeholder reviewer.
 ---
 
 # BrSE Client Report
 
-Use this skill to produce concise Japanese reports that are accurate, customer-facing, and action-oriented.
+## Overview
+
+Draft or polish concise Japanese customer-facing reports that are accurate, business-style, and action-oriented.
+
+**Core principle:** Conclusion first. Every sentence must support the conclusion, customer impact, risk, decision needed, or next action — otherwise delete it.
+
+## When To Use
+
+- Daily or weekly status update to a Japanese customer.
+- Investigation result, impact report, or risk note for stakeholder review.
+- Customer question reply that must be ready for direct forwarding.
+- A developer report has been reviewed (`brse-report-reviewer`) and the BrSE must convert it into customer-facing JP.
+
+## When NOT To Use
+
+- Internal team standup notes — use `brse-offshore-sync` instead.
+- Developer-to-developer technical writeup — keep working language.
+- Report substance is still weak — run `brse-report-reviewer` first; do not polish a bad report into a more convincing bad report.
 
 ## Workflow
 
@@ -65,5 +82,42 @@ Use this skill to produce concise Japanese reports that are accurate, customer-f
 - Avoid vague phrases such as "対応中" without scope, owner, or next action.
 - Avoid saying "完了想定" when the date or confidence is unclear.
 - If source was not checked, do not phrase the result as confirmed.
+
+## Example
+
+**Input (developer investigation report in VN):**
+
+> "Em đã check log production từ 9h sáng đến 12h trưa hôm nay. Có khoảng 5 lần lỗi 500 trên endpoint /api/userProfile/update khi role là staff. Em đoán là do middleware chưa được deploy. Em đã rollback và đang theo dõi thêm."
+
+**Output (JP investigation report):**
+
+```markdown
+## 結論
+
+本日午前中に発生した `/api/userProfile/update` の500エラー（5件、9:00〜12:00、staffロール）について、原因は権限ミドルウェアの未デプロイと判明しました。13:00にロールバックを実施し、以降同事象は発生しておりません。
+
+## 確認内容
+
+- 対象期間: 2026-05-20 09:00〜12:00 (本番環境)
+- 対象エンドポイント: `/api/userProfile/update`
+- 発生件数: 5件
+- 対象ロール: staff
+- ログ: アプリログ `production-api-2026-05-20.log` にて該当時刻のスタックトレースを確認
+- 直接原因: 権限ミドルウェアの該当変更が本番未反映の状態でFE側のみ更新されていたため、整合性不一致
+
+## 影響範囲
+
+- 影響を受けたユーザー: staffロールのうち、該当時間帯にUserProfile更新を試行した利用者（5回分のリクエストに相当）
+- 他ロール（admin, manager）への影響: なし
+- データ整合性への影響: なし（更新前にエラーで停止）
+
+## 今後の対応
+
+- 13:00 ロールバック実施済（FE側を一時的に旧版へ戻し）
+- 明日10:00を目処に、FEとBEを同時デプロイする手順で再リリース予定
+- 同日中に、FE/BE同時デプロイを必須とする運用手順書を更新
+```
+
+**Why this output:** The developer's "em đoán là" became a verified `直接原因` after evidence was added; the vague "đang theo dõi thêm" became concrete actions with timing. AI-like scaffolding ("Em đã check", "Em đoán") was removed. `体言止め` and Japanese business style were applied without inventing facts.
 
 For Japanese report wording patterns, read `references/japanese-reporting.md`.

@@ -1,11 +1,15 @@
 ---
 name: brse-spec-verify
-description: Verify a requirement document against ISO/IEC/IEEE 29148 9-criteria (correct, unambiguous, complete, consistent, singular, verifiable, feasible, traceable, necessary) before handing to dev.
+description: Use when a BrSE requirement document is about to be forwarded to dev or transferred to a delivery surface, when a sprint-planning doc is inherited from another BrSE, or when a developer pushes back that a spec is unclear and the BrSE needs an objective check.
 ---
 
 # BrSE Spec Verify
 
-Use this skill to verify a requirement document is complete, unambiguous, and faithful to the original customer intent before it is forwarded to developers or transferred to Outline/Plane/Backlog.
+## Overview
+
+Verify a requirement document against ISO/IEC/IEEE 29148:2018 9-criteria before it is forwarded to developers or transferred to a delivery surface.
+
+**Core principle:** A populated section is not an approved section. Read the body, not the headings. Without the original source, `Correct` cannot be evaluated — mark it Unverified, never assume.
 
 ## When To Use
 
@@ -13,6 +17,13 @@ Use this skill to verify a requirement document is complete, unambiguous, and fa
 - Before `brse-spec-transfer` pushes a document to a delivery surface.
 - When reviewing a sprint-planning document inherited from another BrSE.
 - When a developer pushes back that a spec is unclear and the BrSE wants an objective check.
+
+## When NOT To Use
+
+- The clarifier has not run yet — verify needs a structured doc, not raw customer input.
+- The doc is being authored, not reviewed — write first, verify last.
+- The doc is for a one-off internal note that will never go to dev or customer — skip the gate.
+- The target is implementation code, not a requirement — code review is a different skill outside this plugin.
 
 ## Inputs
 
@@ -81,6 +92,45 @@ Status values: `OK`, `Gap`, `Unverified`.
 - Keep product names, screen names, role labels, version codes, and third-party tool names in their original form regardless of the document's language.
 - If the document is for a Japanese customer audience, keep the suggested rewrites in natural Japanese; for offshore developers, keep them in the target document's working language.
 - Do not merge this skill's output with the clarifier's output. Verification is a separate artifact.
+
+## Rationalization Table
+
+| Excuse | Reality |
+| ------ | ------- |
+| "All 9 sections are populated, the doc is fine." | A populated section can still be ambiguous, unverifiable, or contradicted. Read the body. |
+| "The original source is missing but I remember what the customer said." | Memory is not a source. Mark `Correct` as Unverified, do not assume. |
+| "The hedging word `適切に` is industry-standard, leave it." | `適切に` has no observable pass/fail. `Unambiguous` failure. Replace with a concrete rule. |
+| "AC combines two scenarios but devs will understand." | `Singular` exists because devs do not always understand. Split. |
+| "Dev pushed back, so the spec must be wrong — let me rewrite it." | Verify the spec against ISO criteria first. Sometimes dev is wrong; sometimes spec is wrong. Evidence decides. |
+| "The Pass verdict is faster, let me accept this one." | Pass = forward-safe. A wrong Pass forwards risk to dev and customer. Use Needs Fix when in doubt. |
+
+## Red Flags — STOP
+
+Stop and re-run the criteria check if you notice yourself doing any of these:
+
+- Marking a criterion `OK` while skimming the section heading instead of reading the body.
+- Silently rewriting the target document without listing the gap first.
+- Closing a `Correct` gap by adding context not present in the original source.
+- Producing a verdict of `Pass` when any AC has the words "適切に / 正しく / 必要に応じて / 状況によって" without a concrete rule.
+- Filing `Traceable` as `OK` when the document does not link to a ticket / URL / source.
+- Choosing the verdict that "looks more constructive" instead of the one the evidence supports.
+
+## Mechanical Pre-Check (optional)
+
+Before running the 9-criteria review by hand, you can run the static checker to clear obvious failures:
+
+```bash
+node scripts/check-9-criteria.mjs path/to/spec.md
+```
+
+The script flags:
+- Missing required sections (`Complete`).
+- Forbidden hedging words in JP and EN (`Unambiguous`).
+- AC bullets that combine multiple rules (`Singular`).
+- AC bullets without an observable predicate (`Verifiable`).
+- Missing ticket ID / URL / Source section (`Traceable`).
+
+Mechanical findings narrow the human review; they do not replace it. The semantic criteria — `Correct`, `Feasible`, `Necessary` — still require reading the document against the original source.
 
 ## Example
 

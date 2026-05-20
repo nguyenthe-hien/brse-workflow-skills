@@ -1,6 +1,6 @@
 ---
 name: brse-report-reviewer
-description: Verify engineer reports (including AI engineers on multi-environment work) before BrSE forwards to Japanese stakeholders. Combines 6-criteria substance check with 5-question clarity check (具体↔抽象).
+description: Use when a developer, AI engineer, QA, or offshore team member has submitted a report and the BrSE must verify its substance and clarity before forwarding to a Japanese customer or PM — daily status, investigation, impact analysis, spike result, or release-gate QA.
 ---
 
 # BrSE Report Reviewer
@@ -15,6 +15,13 @@ Use this skill when reviewing reports authored by developers, AI engineers, QA, 
 - Spike result or feasibility study.
 - QA report before release.
 - AI engineer report covering work across multiple environments (branches, worktrees, sandboxes).
+
+## When NOT To Use
+
+- BrSE is *authoring* a report — use `brse-client-report` instead.
+- Report is from the BrSE themselves — get an external review, this skill is for substance review of others' reports.
+- Document is a requirement spec, not a report — use `brse-spec-verify`.
+- Author is the customer (e.g., customer-side investigation note) — different criteria apply; do not impose dev-report standards on customer artifacts.
 
 ## Workflow
 
@@ -119,6 +126,30 @@ Status values: `OK`, `Gap`, `Unverified`, `N/A`.
 - For impact reports, the claim must answer: "Affected? Not affected? Unknown until X is checked?"
 - For AI engineer reports, do not accept evidence that cannot be traced to a real log, file, or command output. AI-summarized evidence without source is a `Gap` under `Evidence` and `Provenance of evidence`.
 - Use Japanese phrasing in the "Request To Author" section when the author works in a Japanese-language context; otherwise use the author's working language.
+
+## Rationalization Table
+
+| Excuse | Reality |
+| ------ | ------- |
+| "The report is detailed, so it must be accurate." | Length is not evidence quality. A 500-word vague report still fails `Evidence`. |
+| "All 6 substance sections are filled in, approve it." | Filled ≠ verified. Read the body. Many filled sections contain "対応中" or "様子見" with no substance. |
+| "Author is senior, trust the conclusion." | Seniority is not evidence. Even senior engineers skip Scope when rushed. |
+| "Customer is waiting, polish and forward." | Polished bad data is worse than raw bad data — it looks credible. Send back. |
+| "I will silently rewrite the weak conclusion." | The author needs to know the standard. Flag and ask, do not rewrite for them. |
+| "AI engineer report summarized the logs, that is good enough." | Summarized evidence without source is a `Provenance` gap. Require the real log or command output. |
+| "MECE is failing but only at the edges, mark OK." | MECE failures hide whole categories of issues. Mark `Gap` and require the missing category. |
+
+## Red Flags — STOP
+
+Stop and re-run Layer 1 or Layer 2 if you notice yourself doing any of these:
+
+- Approving while skimming, not reading the body sentence-by-sentence.
+- Marking `Claim` as `OK` because the report has a `## 結論` heading — read the conclusion content.
+- Accepting "no issues found" as a conclusion without scope ("checked X, did not check Y").
+- Forwarding an AI engineer report whose evidence section says "logs reviewed" without log excerpts.
+- Polishing wording on a report whose verdict should be Send back to author.
+- Filing `Action` as `OK` when next step is "様子を見る" or "引き続き対応" with no owner or trigger.
+- Choosing the verdict that minimizes back-and-forth instead of the one the substance check supports.
 
 ## Example 1 — Vague status report
 
