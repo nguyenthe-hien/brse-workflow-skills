@@ -138,7 +138,7 @@ codex plugin install brse-workflow
 ### Tier 2 — Analytical Bridge
 
 - `brse-report-reviewer` — verify dev reports with substance and clarity checks before forwarding
-- `brse-structured-thinking` — MECE, Pyramid, Logic Tree, 5W1H, So-What/Why-So
+- `brse-structured-thinking` — First Principles, MECE, Pyramid, Logic Tree, 5W1H, So-What/Why-So
 - `brse-workflow-chain` — orchestrate full chain from raw request to delivery
 - `brse-dev-triage` — categorize dev questions and answer / trace / escalate
 

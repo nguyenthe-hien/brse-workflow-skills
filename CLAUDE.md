@@ -68,7 +68,7 @@ Skills are organized by BrSE competency tier (communication → analytical → s
 | Skill | Purpose |
 |---|---|
 | `brse-report-reviewer` | Verify dev reports with substance and clarity checks before forwarding to customer |
-| `brse-structured-thinking` | Apply MECE, Pyramid, Logic Tree, 5W1H, So-What/Why-So |
+| `brse-structured-thinking` | Apply First Principles, MECE, Pyramid, Logic Tree, 5W1H, So-What/Why-So |
 | `brse-workflow-chain` | Orchestrate clarifier → impact-trace → breakdown → QA → report as one chain |
 | `brse-dev-triage` | Categorize dev questions and decide: answer / trace / escalate to customer |
 
