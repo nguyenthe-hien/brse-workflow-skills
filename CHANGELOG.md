@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-05-20
+
+Skills quality uplift to match Anthropic skill-creator and superpowers writing-skills conventions. New meta-skill, mechanical helpers shipped with the three rigid skills, pressure-test scenarios, and an extended `brse-structured-thinking` with First-Principles / Algorithm Thinking. No breaking changes; all 15 skills pass `./scripts/validate-skills.sh` with zero warnings.
+
 ### Added
 - New meta-skill `brse-skill-author` for bootstrapping and maintaining BrSE skills inside the plugin (includes Rationalization Table, Red Flags, pressure-testing reference).
 - `plugins/brse-workflow/template/SKILL.md` canonical template covering every required SKILL.md block (Overview / Core principle, When To Use, When NOT To Use, Inputs, Workflow, Output Shape, Rules, Rationalization Table, Red Flags, Example, Common Mistakes, Anti-Patterns, References).
@@ -21,6 +25,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   - `brse-spec-transfer/scripts/markdown-skeleton.mjs` — ticket / demo skeleton emitter with source heading + table preservation.
 - `tests/scenarios/` directory with pressure scenarios for the four rigid skills (baseline + targeted pressure variants for time, authority, sunk-cost).
 - `tests/README.md` describing how to manually run pressure scenarios.
+- New framework in `brse-structured-thinking`: **First-Principles / Algorithm Thinking** — for cases where a request, estimate, or process repeats "the usual way" without proving which constraints are real. Includes a scope-reduction example and matching reference entry in `references/frameworks.md`.
 
 ### Changed
 - `description:` field rewritten for 11 skills to be trigger-first (no workflow summary). Affected: `brse-workflow-chain`, `brse-structured-thinking`, `brse-dev-triage`, `brse-feasibility-challenge`, `brse-intent-reader`, `brse-offshore-sync`, `brse-spec-transfer`, `brse-spec-verify`, `brse-ticket-breakdown`, `brse-report-reviewer`, `brse-client-report`, `brse-impact-trace`, `brse-qa-scenario`, `brse-requirement-clarifier`.
