@@ -53,9 +53,17 @@ function parseYaml(text) {
   const lines = text.split("\n").filter((l) => !/^\s*#/.test(l) && l.trim() !== "");
   let pos = 0;
 
+  // Only these parent keys produce lists of objects (i.e. tickets).
+  // Other list contexts — acceptance_criteria, open_questions, labels,
+  // dependencies — are lists of scalars. This prevents a strings like
+  // `- AC1: return 403` from being mis-parsed as `{AC1: ...}` and
+  // rendered as `[object Object]` downstream.
+  const OBJECT_LIST_PARENTS = new Set(["tickets"]);
+
   // A list item is treated as an inline-key object only if:
-  //  - it starts with an unquoted identifier
-  //  - then a colon followed by space or end-of-line
+  //  - the parent field is in OBJECT_LIST_PARENTS
+  //  - it starts with an unquoted identifier matching ^[A-Za-z_][\w-]*$
+  //  - followed by a colon and a space (or end-of-line)
   // A quoted string (starts with " or ') is always a scalar.
   function looksLikeInlineKey(s) {
     if (s.startsWith('"') || s.startsWith("'")) return false;
@@ -116,7 +124,7 @@ function parseYaml(text) {
           const nextIndent = indentOf(nextLine);
           const nextContent = nextLine.slice(nextIndent);
           if (nextIndent > baseIndent && nextContent.startsWith("-")) {
-            result[key] = parseList(nextIndent);
+            result[key] = parseList(nextIndent, key);
           } else if (nextIndent > baseIndent) {
             result[key] = parseBlock(nextIndent);
           } else {
@@ -132,8 +140,9 @@ function parseYaml(text) {
     return result;
   }
 
-  function parseList(baseIndent) {
+  function parseList(baseIndent, parentKey = null) {
     const arr = [];
+    const allowInlineObject = OBJECT_LIST_PARENTS.has(parentKey);
     while (pos < lines.length) {
       const line = lines[pos];
       const indent = indentOf(line);
@@ -152,7 +161,7 @@ function parseYaml(text) {
             arr.push(null);
           }
         }
-      } else if (looksLikeInlineKey(after)) {
+      } else if (allowInlineObject && looksLikeInlineKey(after)) {
         // inline first key, then maybe nested
         const colonIdx = firstUnquotedColon(after);
         const k = after.slice(0, colonIdx).trim();
@@ -175,12 +184,13 @@ function parseYaml(text) {
           const vv = nxtContent.slice(ci + 1).trim();
           pos++;
           if (vv === "") {
-            // nested list / block
+            // nested list / block — pass the immediate parent key (kk),
+            // so e.g. `acceptance_criteria` items stay scalars.
             if (pos < lines.length) {
               const nIndent = indentOf(lines[pos]);
               const nContent = lines[pos].slice(nIndent);
               if (nIndent > nxtIndent && nContent.startsWith("-")) {
-                obj[kk] = parseList(nIndent);
+                obj[kk] = parseList(nIndent, kk);
               } else if (nIndent > nxtIndent) {
                 obj[kk] = parseBlock(nIndent);
               } else {

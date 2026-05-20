@@ -71,10 +71,14 @@ For scaffolding a target document, the skill ships a skeleton generator:
 # Emit a clean ticket skeleton
 node scripts/markdown-skeleton.mjs --to ticket
 
-# Emit a demo/customer skeleton that preserves source headings and tables
+# Emit a demo/customer skeleton anchored on the source's headings + tables (in order)
 node scripts/markdown-skeleton.mjs --to demo --source path/to/source.md
 ```
 
-The script extracts headings and tables from the source and re-emits them in the target order — structure only. It does not translate content; translation remains a human/Claude decision per the Rules above.
+Scope of preservation in `--to demo --source`:
+- **Preserved in original order**: heading levels and text, table rows.
+- **NOT preserved**: paragraphs, bullets, code blocks, blockquotes, inline images, link placement.
+
+The output is a starting skeleton, not a faithful rendering of the source. Always keep the source open side-by-side when filling the content placeholders. The script does not translate content; translation remains a human/Claude decision per the Rules above.
 
 For Japanese wording and document-surface rules, read `references/style.md`.

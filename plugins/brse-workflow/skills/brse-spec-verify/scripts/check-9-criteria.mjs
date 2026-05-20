@@ -43,27 +43,34 @@ const REQUIRED_SECTIONS = [
 // ---------------------------------------------------------------------------
 // Forbidden hedging words (Unambiguous)
 // JP and EN combined. Each match returns a line excerpt.
+//
+// Patterns intentionally OMIT the /g flag. A regex with /g keeps a
+// stateful `lastIndex` between `.test()` calls, so reusing the same
+// regex across multiple lines produces false negatives on consecutive
+// matches (e.g., two adjacent AC bullets both containing "適切に" —
+// only the first would be flagged). We only need a boolean per line,
+// so a non-global regex is the correct fix.
 // ---------------------------------------------------------------------------
 
 const HEDGING_PATTERNS = [
   // Japanese hedging
-  /適切に/g,
-  /正しく/g,
-  /必要に応じて/g,
-  /状況によって/g,
-  /可能な限り/g,
-  /なるべく/g,
-  /できるだけ/g,
-  /柔軟に/g,
-  /なんとなく/g,
+  /適切に/,
+  /正しく/,
+  /必要に応じて/,
+  /状況によって/,
+  /可能な限り/,
+  /なるべく/,
+  /できるだけ/,
+  /柔軟に/,
+  /なんとなく/,
   // English hedging
-  /\bappropriately\b/gi,
-  /\bproperly\b/gi,
-  /\bas needed\b/gi,
-  /\bif possible\b/gi,
-  /\bmay\b(?!\s+\d)/gi,
-  /\bshould be\b/gi,
-  /\bsomewhat\b/gi,
+  /\bappropriately\b/i,
+  /\bproperly\b/i,
+  /\bas needed\b/i,
+  /\bif possible\b/i,
+  /\bmay\b(?!\s+\d)/i,
+  /\bshould be\b/i,
+  /\bsomewhat\b/i,
 ];
 
 // ---------------------------------------------------------------------------
