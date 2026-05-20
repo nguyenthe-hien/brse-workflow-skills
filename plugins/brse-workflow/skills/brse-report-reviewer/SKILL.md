@@ -5,7 +5,7 @@ description: Use when a developer, AI engineer, QA, or offshore team member has 
 
 # BrSE Report Reviewer
 
-Use this skill when reviewing reports authored by developers, AI engineers, QA, or offshore team members before they are forwarded to a Japanese customer or PM. The goal is to catch weak conclusions, missing evidence, scope gaps, vague next steps, and unclear writing so the BrSE never relays unreliable or hard-to-read information.
+Use this skill for substance review of reports authored by developers, AI engineers, QA, or offshore team members before they are forwarded to a Japanese customer or PM. The goal is to catch weak conclusions, missing evidence, scope gaps, vague next steps, and unclear writing so the BrSE never relays unreliable or hard-to-read information.
 
 ## When To Use
 
