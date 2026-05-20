@@ -1,6 +1,6 @@
 ---
 name: brse-feasibility-challenge
-description: Evaluate a customer or PM request for technical, scope, or timeline feasibility, then draft a structured Japanese response that challenges infeasible parts and proposes a superior alternative.
+description: Use when a customer or PM request would set the project up to fail if relayed as-is — impossible timeline, conflicting architecture, known failure mode, or contradiction with a prior commitment — and the BrSE must push back without breaking customer trust.
 ---
 
 # BrSE Feasibility Challenge
@@ -13,6 +13,13 @@ Use this skill when relaying the customer request as-is would set the project up
 - Deadline is technically impossible without scope cut.
 - Approach has a known failure mode (performance, security, data integrity).
 - Request contradicts an existing decision or contract.
+
+## When NOT To Use
+
+- The request is feasible — do not invent objections.
+- The "infeasibility" is a personal preference, not evidence-backed — collect evidence first.
+- The customer has already agreed to the constraint and just needs status — use `brse-client-report`.
+- The challenge would require a contract amendment that only PM/legal can drive — escalate, do not draft as BrSE.
 
 ## Workflow
 

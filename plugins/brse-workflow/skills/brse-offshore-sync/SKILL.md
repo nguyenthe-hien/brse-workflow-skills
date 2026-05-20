@@ -1,11 +1,24 @@
 ---
 name: brse-offshore-sync
-description: Prepare bilingual BrSE meeting agendas, minutes, decision logs, and action items for standups, customer meetings, design sync, or handoff notes.
+description: Use when a BrSE must keep distributed teams aligned across language, timezone, role, and context gaps — before a customer meeting, after a standup, during release readiness, or when handing off context between BrSEs.
 ---
 
 # BrSE Offshore Sync
 
 Use this skill to keep distributed teams aligned across language, timezone, role, and context gaps.
+
+## When To Use
+
+- Preparing or writing minutes for a customer meeting, internal dev sync, Q&A triage, release readiness, issue escalation, or handoff.
+- Translating decisions and action items between Japanese (customer) and Vietnamese/English (offshore dev) without losing precision.
+- Handing off context between BrSEs across shift boundaries.
+
+## When NOT To Use
+
+- Producing a customer-facing report — use `brse-client-report`.
+- Resolving an open dev question — use `brse-dev-triage`.
+- The "meeting" is actually a status request from a single stakeholder — write a report, not minutes.
+- No decisions were made and no action items resulted — capture as a note, not as offshore-sync output.
 
 ## Workflow
 

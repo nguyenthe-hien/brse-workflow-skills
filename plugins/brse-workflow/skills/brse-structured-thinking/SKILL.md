@@ -1,6 +1,6 @@
 ---
 name: brse-structured-thinking
-description: Apply MECE, Pyramid Principle, issue trees, and 5W1H to structure BrSE outputs. Use when a deliverable risks gaps or buried key messages, or when a problem needs decomposition before action.
+description: Use when a BrSE deliverable has its conclusion buried, scope that feels incomplete with no clear gap, a customer question too broad to answer, ticket breakdown that overlaps or leaves silent holes, inherited assumptions need first-principles challenge, or a vague problem statement like "なんとなくおかしい" needs decomposition before action.
 ---
 
 # BrSE Structured Thinking
@@ -13,7 +13,15 @@ Use this skill to add logical structure to BrSE deliverables. It does not replac
 - A scope definition feels incomplete and you cannot tell what is missing.
 - A customer question is broad and needs to be broken into answerable pieces.
 - Ticket breakdown overlaps or leaves silent gaps.
+- A proposal, estimate, or process repeats "the usual way" without proving which constraints are real.
 - A problem statement is vague: "なんとなくおかしい" or "うまくいかない".
+
+## When NOT To Use
+
+- The deliverable is already clearly structured — adding a framework is decoration.
+- The skill that produced the output already enforces structure — use that skill's gate, not a second pass here.
+- Time is too short and a rough structure already exists — ship and refine after.
+- The problem is missing facts, not structure — gather facts first; framework on top of unknowns produces a confident-looking guess.
 
 ## Frameworks
 
@@ -85,9 +93,22 @@ Use when: testing whether each sentence in a report earns its place.
 
 If a sentence answers neither, delete or rewrite.
 
+### 6. First-Principles / Algorithm Thinking
+
+Use when: a request, estimate, or solution may be carrying inherited assumptions from past projects, vendor habits, or "we always do it this way" process.
+
+Apply:
+- **Question the requirement** — who needs it, what outcome does it protect, and which part is assumption?
+- **Find the fundamentals** — confirmed facts, hard constraints, customer decisions, code/data/API contracts, deadlines.
+- **Delete before optimizing** — remove scope, process, fields, checks, or handoffs that do not support the outcome.
+- **Simplify before accelerating** — make the remaining path understandable and testable.
+- **Automate last** — do not automate a step that should not exist.
+
+Test: If the conclusion depends on convention rather than confirmed facts or constraints, rebuild the reasoning from the fundamentals.
+
 ## Workflow
 
-1. Identify which framework fits the current deliverable. Often two combine (Pyramid + MECE for a report; Issue Tree + 5W1H for an investigation).
+1. Identify which framework fits the current deliverable. Often two combine (Pyramid + MECE for a report; Issue Tree + 5W1H for an investigation; First-Principles + MECE for scope reduction).
 2. Apply the framework as a transformation pass on the existing draft, not as decoration.
 3. Surface what is missing as explicit `Open Question` items rather than guessing.
 4. Keep the BrSE domain rules from the source skill (clarifier, impact-trace, etc.) — this skill structures, does not invent content.
@@ -115,6 +136,9 @@ When chained from another skill, return only the restructured content plus a sho
 - Pyramid top must be falsifiable. "対応中" is not a conclusion.
 - Issue tree branches must be MECE within their parent.
 - Open questions detected by 5W1H must name the dimension: "Who is not specified" not "more info needed."
+- First-principles analysis must name the hard constraints and the assumptions being challenged.
+- Do not role-play as a famous person. Apply the thinking pattern in a BrSE context and keep the output customer-safe.
+- Do not automate, speed up, or estimate a step before checking whether that step should exist.
 
 ## Example: Applying Pyramid + MECE to an impact report
 
@@ -134,6 +158,34 @@ When chained from another skill, return only the restructured content plus a sho
 
 ## 残課題
 UserProfile 表示ロジックのうち、テナント別設定の分岐は未確認。
+```
+
+## Example: Applying First-Principles / Algorithm Thinking to a scope request
+
+**Input:**
+> "既存画面と同じように、CSV出力・承認フロー・通知メールも全部入れてください。"
+
+**Structured check:**
+```
+## Framework Applied
+First-Principles / Algorithm Thinking
+
+## Structured Output
+- Required outcome: staff can review exported records outside the system.
+- Hard constraints: export target fields, permission boundary, release deadline, existing CSV contract.
+- Assumptions to challenge:
+  - CSV output is required, but approval flow may be a copied pattern rather than a confirmed need.
+  - Notification email may be replaceable by existing in-app status if the user already checks the screen.
+- Reduced proposal:
+  - Keep CSV output and permission check.
+  - Treat approval flow and notification email as separate confirmation items before including them in scope.
+
+## Gaps Detected
+- Who approves the export is not specified.
+- Business risk of exporting without notification is not specified.
+
+## Recommended Next Action
+Ask the customer to confirm whether approval flow and notification email are required for this screen, or inherited from another workflow.
 ```
 
 For framework-specific patterns and anti-patterns, read `references/frameworks.md`.

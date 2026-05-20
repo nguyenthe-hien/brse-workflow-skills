@@ -62,3 +62,59 @@ Print the draft. For each sentence, ask both questions out loud:
 | "対象期間2024-05-01〜05-07のerrorログを確認し、該当処理のエラーは0件でした" | 影響範囲を限定できる | アクセスログとエラーログの両方を確認 → **keep** |
 
 If half the draft fails the test, the structure is wrong — rebuild with Pyramid before editing line by line.
+
+## First-Principles / Algorithm Thinking — BrSE Use
+
+This is for inherited assumptions, not for every decision. Use it when a request sounds expensive because it bundles past patterns into the current problem.
+
+### First-Principles Breakdown
+
+Separate the problem into four buckets:
+
+| Bucket | Question | BrSE examples |
+| ------ | -------- | ------------- |
+| Fundamental fact | What is confirmed true? | Current code path, table schema, API contract, existing permission rule |
+| Hard constraint | What cannot be changed in this scope? | Release date, customer decision, legal rule, shared interface |
+| Assumption | What is being treated as true without proof? | "Same as old screen", "QA needs all patterns", "approval is always required" |
+| Derivation | What follows from facts and constraints? | Minimum scope, safest rollout, required confirmation question |
+
+If a point is neither a fact nor a hard constraint, label it as an assumption before using it in the conclusion.
+
+### BrSE Algorithm Order
+
+Apply this order for scope, workflow, or solution cleanup:
+
+1. **Question the requirement** — attach each requirement to a real actor, business outcome, or source.
+2. **Delete** — remove anything that does not protect the outcome.
+3. **Simplify** — make the remaining behavior smaller, clearer, and testable.
+4. **Accelerate** — only then reduce cycle time or delivery steps.
+5. **Automate** — automate last, after the manual process is proven necessary.
+
+Common failure: automating a copied process before proving the copied process belongs in the current scope.
+
+### Limits Test
+
+Push the request to extremes to expose hidden structure:
+
+- If this had to ship tomorrow, what is the irreducible behavior?
+- If this had to support 100 tenants, which manual step breaks first?
+- If the dataset were empty or huge, which branch changes?
+- If every screen copied this workflow, would the product become easier or harder to operate?
+
+### Perfect-State Target
+
+Ask what the ideal state would look like if current implementation habits did not exist. Then compare that target with the actual constraints.
+
+Use this to avoid polishing a bad workflow. The output should be a practical next step, not a fantasy design:
+
+- Ideal state: user gets the necessary result with no duplicate input.
+- Current constraint: legacy API requires one intermediate status.
+- Practical proposal: keep the intermediate status internally, but do not expose it as a user action.
+
+### Risk Honesty
+
+End first-principles analysis with a falsifiability check:
+
+- Where might this analysis be wrong?
+- Which missing fact would change the recommendation?
+- What source must be traced before calling the proposal safe?
