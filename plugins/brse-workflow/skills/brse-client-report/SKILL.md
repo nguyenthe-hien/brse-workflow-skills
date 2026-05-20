@@ -1,11 +1,11 @@
 ---
 name: brse-client-report
-description: Draft or review Japanese client-facing BrSE reports for progress, investigations, risk notes, and customer answers. Use when reporting to Japanese stakeholders.
+description: Draft or polish Japanese customer-facing reports for daily/weekly updates, investigations, risk notes, and customer answers. Use when wording, tone, and business style must be ready for stakeholders.
 ---
 
 # BrSE Client Report
 
-Use this skill to produce concise Japanese reports that are accurate, customer-facing, and action-oriented.
+Use this skill to draft or polish concise Japanese customer-facing reports that are accurate and action-oriented.
 
 ## Workflow
 
